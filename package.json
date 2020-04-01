@@ -1,0 +1,25 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "forkify project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lejonu/forkify.git"
+  },
+  "author": "Leonardo José Nunes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lejonu/forkify/issues"
+  },
+  "homepage": "https://github.com/lejonu/forkify#readme",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.10.3"
+  }
+}

@@ -1,0 +1,10 @@
+comandos.txt
+dist/.DS_Store
+dist/.DS_Store
+/dist/css
+/dist/img
+dist/package-lock.json
+src/.DS_Store
+node_modules/
+package-lock.json
+src/index.html
