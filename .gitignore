@@ -3,6 +3,7 @@ dist/.DS_Store
 dist/.DS_Store
 /dist/css
 /dist/img
+/dist/js/bundle.js
 dist/package-lock.json
 src/.DS_Store
 node_modules/
