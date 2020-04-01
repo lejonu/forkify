@@ -1,10 +1,17 @@
-import str from './models/Search'
-console.log( str )
+import axios from 'axios'
 
-// import { add as a, multiply as m, ID } from './views/searchView'
+async function getResults( query ){    
+    
+    try {
+        const res = await axios( `https://forkify-api.herokuapp.com/api/search?q=${ query }` )
 
-import * as searchView from './views/searchView'
+        const recipes = res.data.recipes
+    
+        console.log( recipes )
+    } catch ( error ) {
+        alert( error )
+    }
 
-// console.log( `Using imported functions ${ ID, 2 } and ${ m( 3, 4 ) } and ${ a( 5, 5) }`)
+}
 
-console.log( `Using imported functions ${ searchView.ID, 2 } and ${ searchView.multiply( 3, 4 ) } and ${ searchView.add( 5, 5) }`)
+getResults( 'pizza' )
