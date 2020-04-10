@@ -16,7 +16,7 @@ export default class Recipe {
             this.ingredients = res.data.recipe.ingredients
             // console.log( res )
         } catch (error) {
-            console.log( error )
+            // console.log( error )
             alert( 'Something went wrong :(')
         }
     }
