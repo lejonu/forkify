@@ -2,6 +2,7 @@ import Search from './models/Search'
 import Recipe from './models/Recipe'
 import * as searchView from './views/searchView'
 import { elements, renderLoader, clearLoader } from './views/base'
+
 // elements
 // Global state of the app
 const state = {}
@@ -9,6 +10,8 @@ const state = {}
 const controlSearch = async () => {
     // 1. Get the query from the view
     const query = searchView.getInput()
+    // const query = 'pizza'
+
     // console.log( query )
 
     if( query ){
@@ -43,6 +46,11 @@ elements.searchForm.addEventListener( 'submit', e =>{
     controlSearch()
 })
 
+// window.addEventListener( 'load', e =>{
+//     e.preventDefault()
+//     controlSearch()
+// })
+
 elements.searchResPage.addEventListener( 'click', e => {
     const btn = e.target.closest( '.btn-inline' )
     if( btn ){
@@ -71,9 +79,14 @@ const controlRecipe = async () => {
         // Create new recipe object
         state.recipe = new Recipe( id )
 
+        // testing
+        // window.r = state.recipe
+
         try {
-            // Get recipe data
+            // Get recipe data and parse ingredients
             await state.recipe.getRecipe()
+
+            state.recipe.parseIngredients()
 
             // Calculate servings and time
             state.recipe.calcTime() 
