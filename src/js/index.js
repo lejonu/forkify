@@ -3,11 +3,15 @@ import Recipe from './models/Recipe'
 import List from './models/List'
 import * as searchView from './views/searchView'
 import * as recipeView from './views/recipeView'
+import * as listView from './views/listView'
 import { elements, renderLoader, clearLoader } from './views/base'
 
 // elements
 // Global state of the app
 const state = {}
+
+// Testing
+window.state = state
 
 const controlSearch = async () => {
     // 1. Get the query from the view
@@ -117,7 +121,39 @@ const controlRecipe = async () => {
 
 // Handling recipe button clicks
 
+const controlList = () => {
+    if( !state.list ) state.list = new List()
+
+    state.recipe.ingredients.forEach( e => {
+        const item = state.list.addItem( e.count, e.unit, e.ingredient )
+
+        listView.renderItem( item )
+    })
+}
+
+// Handle delete and update list item events
+elements.shopping.addEventListener( 'click', e => {
+    const id = e.target.closest( '.shopping__item').dataset.itemid
+
+    // Handle the delete button
+    if( e.target.matches( '.shopping__delete, .shopping__delete *')){
+        // Delete from state
+        // throw Error( id )
+        state.list.deleteItem( id )
+
+        // Delete from UI
+        listView.deleteItem( id )
+    } 
+    // Handle the count update
+    else if (e.target.matches('.shopping__count-value')) {
+        const val = parseFloat(e.target.value, 10);
+        state.list.updateCount(id, val);
+    }
+
+})
+
 elements.recipe.addEventListener( 'click', e => {
+    
     if( e.target.matches( '.btn-decrease, .btn-decrease *')){
         // Decrease 
         if( state.recipe.servings > 1){
@@ -129,6 +165,8 @@ elements.recipe.addEventListener( 'click', e => {
         // Decrease 
         state.recipe.updateServings( 'inc' )
         recipeView.updateServingsIngredients( state.recipe )
+    } else if ( e.target.matches( '.recipe__btn--add, .recipe__btn--add *')){
+        controlList( )
     }
 
     // console.log( state.recipe )

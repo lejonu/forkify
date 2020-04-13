@@ -93,7 +93,6 @@ export default class Recipe {
                 }
             }
 
-
             return objIng
             // return ingredient
         })

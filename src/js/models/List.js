@@ -1,4 +1,5 @@
 import uniqid from 'uniqid'
+
 export default class List {
     constructor(){
         this.items = []
@@ -21,10 +22,11 @@ export default class List {
 
         // [ 2,4,8 ] slice(1, 2) -> returns [4], original array is [2,4,8]
 
-        this.item.splice( index, 1 )
+        this.items.splice( index, 1 )
     }
 
     updateCount( id, newCount ){
+        // console.log( this.items )
         this.items.find( e => e.id === id ).count = newCount
     }
 }
